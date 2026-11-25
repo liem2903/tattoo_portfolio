@@ -39,6 +39,15 @@
   border: 0;
   background: var(--rule);
   cursor: zoom-in;
+  transition: transform var(--press) var(--ease-out);
+}
+
+/* Press feedback only with a mouse: on touch, every scroll starts with a press
+   on a full-screen image, and shrinking it mid-swipe would feel broken. */
+@media (hover: hover) and (pointer: fine) {
+  .art:active {
+    transform: scale(0.99);
+  }
 }
 
 .art img {

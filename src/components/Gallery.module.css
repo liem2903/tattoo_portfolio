@@ -24,6 +24,11 @@
   border: 0;
   background: var(--rule);
   cursor: zoom-in;
+  transition: transform var(--press) var(--ease-out);
+}
+
+.open:active {
+  transform: scale(0.98);
 }
 
 .open img {

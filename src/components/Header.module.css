@@ -53,11 +53,24 @@
   overflow-wrap: anywhere;
 }
 
-.contact:hover .value,
 .contact:focus-visible .value {
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 4px;
+}
+
+/* Hover underline only with a real pointer; on touch it would stick after a tap */
+@media (hover: hover) and (pointer: fine) {
+  .contact:hover .value {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+  }
+}
+
+/* Tap feedback on phones, where there is no hover */
+.contact:active .value {
+  opacity: 0.6;
 }
 
 /* Desktop: one centred column, matching the centred images below */

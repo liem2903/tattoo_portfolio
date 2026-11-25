@@ -57,6 +57,12 @@
   font-size: 0.875rem;
   font-weight: 500;
   cursor: pointer;
+  transition: transform var(--press) var(--ease-out);
+}
+
+.primary:not(:disabled):active,
+.secondary:not(:disabled):active {
+  transform: scale(0.97);
 }
 
 .primary {
@@ -73,6 +79,10 @@
 .secondary:disabled {
   opacity: 0.5;
   cursor: progress;
+}
+
+.textButton:active {
+  opacity: 0.6;
 }
 
 .textButton {
@@ -152,11 +162,22 @@
   color: #fff;
   font-size: 0.75rem;
   cursor: pointer;
+  transition: transform var(--press) var(--ease-out);
 }
 
-.delete:hover,
-.delete:focus-visible {
+.delete:focus-visible,
+.delete:not(:disabled):active {
   background: #a3271c;
+}
+
+.delete:not(:disabled):active {
+  transform: scale(0.95);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .delete:hover {
+    background: #a3271c;
+  }
 }
 
 .delete:disabled {

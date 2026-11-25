@@ -1,6 +1,7 @@
 import Masonry from 'react-masonry-css'
 import type { ReactNode } from 'react'
 import type { PortfolioImage } from '../types'
+import { FadeImage } from './FadeImage'
 import styles from './Gallery.module.css'
 
 const columns = { default: 4, 1200: 3, 720: 2 }
@@ -23,7 +24,7 @@ export function Gallery({ images, onOpen, renderOverlay }: Props) {
             onClick={() => onOpen(i)}
             aria-label={`Open image ${i + 1} of ${images.length}`}
           >
-            <img
+            <FadeImage
               src={img.thumbUrl}
               width={img.width}
               height={img.height}
