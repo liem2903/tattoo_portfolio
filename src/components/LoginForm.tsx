@@ -14,8 +14,13 @@ export function LoginForm() {
     setError(null)
     try {
       await signIn(email.trim(), password)
-    } catch {
-      setError('Wrong email or password.')
+    } catch (err) {
+      const message = err instanceof Error ? err.message : String(err)
+      setError(
+        /invalid login credentials/i.test(message)
+          ? 'Wrong email or password.'
+          : `Couldn’t sign in: ${message}`,
+      )
     } finally {
       setBusy(false)
     }

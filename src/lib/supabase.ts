@@ -1,7 +1,9 @@
 import { createClient, type SupabaseClient } from '@supabase/supabase-js'
 
-const url = import.meta.env.VITE_SUPABASE_URL as string | undefined
-const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined
+// Accept the URL with or without a pasted-in path like /rest/v1/; only the origin is valid.
+const rawUrl = (import.meta.env.VITE_SUPABASE_URL as string | undefined)?.trim()
+const url = rawUrl ? rawUrl.replace(/^(https?:\/\/[^/]+).*$/, '$1') : undefined
+const anonKey = (import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined)?.trim()
 
 export const BUCKET = 'portfolio'
 

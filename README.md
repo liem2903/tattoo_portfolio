@@ -23,7 +23,7 @@ Replace `public/preview.png` (1200×630 image used in link previews) and optiona
    select id from auth.users where email = 'his-email@example.com'
    on conflict do nothing;
    ```
-6. **Project Settings → API**: copy the **Project URL** and the **anon public** key.
+6. **Project Settings → API**: copy the **Project URL** (just `https://xxxx.supabase.co`, nothing after it) and the **anon public** (or **publishable**) key. Never the service_role/secret key.
 
 ## 3. Run locally
 
