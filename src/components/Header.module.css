@@ -1,0 +1,65 @@
+.header {
+  padding: clamp(28px, 7vw, 72px) var(--gutter) clamp(24px, 5vw, 48px);
+  border-bottom: 1px solid var(--ink);
+  margin-bottom: var(--gap);
+}
+
+.name {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(3.25rem, 15vw, 9.5rem);
+  line-height: 0.88;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  margin: 0;
+  /* Break long names rather than overflow on small phones */
+  overflow-wrap: anywhere;
+}
+
+.subtitle {
+  margin: 14px 0 0;
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.contacts {
+  list-style: none;
+  padding: 0;
+  margin: clamp(24px, 5vw, 40px) 0 0;
+  max-width: 34rem;
+}
+
+.contacts li + li {
+  border-top: 1px solid var(--rule);
+}
+
+.contact {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  /* 48px+ tap target */
+  padding: 14px 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.label {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.value {
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.contact:hover .value,
+.contact:focus-visible .value {
+  color: var(--accent);
+}
