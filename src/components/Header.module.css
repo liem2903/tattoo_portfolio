@@ -1,37 +1,34 @@
 .header {
-  padding: clamp(28px, 7vw, 72px) var(--gutter) clamp(24px, 5vw, 48px);
-  border-bottom: 1px solid var(--ink);
-  margin-bottom: var(--gap);
+  padding: clamp(40px, 9vw, 96px) var(--gutter) clamp(32px, 6vw, 64px);
+  scroll-snap-align: start;
 }
 
 .name {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(3.25rem, 15vw, 9.5rem);
-  line-height: 0.88;
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
+  font-size: clamp(2.5rem, 8vw, 4.75rem);
+  line-height: 1;
+  letter-spacing: -0.015em;
   margin: 0;
-  /* Break long names rather than overflow on small phones */
   overflow-wrap: anywhere;
 }
 
 .subtitle {
-  margin: 14px 0 0;
-  font-size: 0.875rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  margin: 12px 0 0;
+  font-size: 0.9375rem;
+  color: var(--muted);
 }
 
+/* Phone: stacked rows, label left / value right, full image width */
 .contacts {
   list-style: none;
+  margin: clamp(28px, 5vw, 44px) 0 0;
   padding: 0;
-  margin: clamp(24px, 5vw, 40px) 0 0;
-  max-width: 34rem;
+  border-top: 1px solid var(--rule);
 }
 
-.contacts li + li {
-  border-top: 1px solid var(--rule);
+.contacts li {
+  border-bottom: 1px solid var(--rule);
 }
 
 .contact {
@@ -46,20 +43,49 @@
 }
 
 .label {
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: 0.8125rem;
   color: var(--muted);
 }
 
 .value {
+  font-size: 0.9375rem;
   font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.contact:hover .value,
+.contact:focus-visible .value {
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 4px;
 }
 
-.contact:hover .value,
-.contact:focus-visible .value {
-  color: var(--accent);
+/* Desktop: one centred column, matching the centred images below */
+@media (min-width: 900px) {
+  .header {
+    text-align: center;
+    padding-bottom: clamp(24px, 4vh, 40px);
+  }
+
+  .contacts {
+    display: flex;
+    justify-content: center;
+    gap: clamp(32px, 4vw, 64px);
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 16px 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .contacts li {
+    border-bottom: 0;
+  }
+
+  .contact {
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 0;
+  }
 }

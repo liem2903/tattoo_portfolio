@@ -6,10 +6,12 @@ A simple portfolio site for a tattoo artist: a header with his name and clickabl
 - Vite + React + TypeScript, plain CSS modules (no Tailwind, no UI kit).
 - Supabase (auth, storage, database). No custom server code. Setup lives in `supabase/setup.sql`.
 - Hosted on Railway: `npm start` runs `serve -s dist` (SPA fallback for `/admin`). `VITE_*` env vars are build-time.
-- Libraries: `react-router-dom`, `react-masonry-css` (gallery), `yet-another-react-lightbox` + Zoom (viewer), `qrcode`.
+- Libraries: `react-router-dom`, `react-masonry-css` (admin grid), `yet-another-react-lightbox` + Zoom (viewer), `qrcode`.
 
 ## Product decisions (settled with the user)
-- `/` public gallery; `/admin` login-gated, not linked from the public site, lazy-loaded.
+- `/` public page ("Label" layout, chosen after comparing sticky/frame/grid): intro header (name, subtitle, contacts) that scrolls away; left-aligned on phones, centred on desktop to share an axis with the images. Then a scroll-snap feed (`Feed.tsx`): one piece per screen, each with a gallery placard underneath ("No. 07" numbered oldest = 1, plus month/year). Tap to open the viewer.
+- `/admin` uses the masonry grid (`Gallery.tsx`) because managing many images is easier in a grid.
+- `/admin` login-gated, not linked from the public site, lazy-loaded.
 - One admin account, created by hand. Public sign-ups disabled. Admin = row in `public.admins`; `public.is_admin()` gates every write.
 - Security is enforced by Supabase RLS/storage policies, never by hiding UI.
 - Admin can upload (multiple) and delete (with confirm). Newest first. No captions/reordering yet.
@@ -46,6 +48,8 @@ Avoid these common AI/template design tells:
 - Pill-shaped badges, "Featured" labels, testimonial carousels, stat counters.
 - Dark mode with neon accent glows.
 - Footers full of placeholder links.
+
+Tone: professional and understated, like a gallery or studio site. The user rejected a heavy condensed all-caps display face + monospace as "comicky". Current type: EB Garamond (name/headings, normal case) + Hanken Grotesk (everything else), sentence case, quiet hairline rules.
 
 Do instead:
 - Let the images dominate: large, edge-to-edge or nearly, minimal gaps, no frames or shadows.

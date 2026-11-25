@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Header } from '../components/Header'
-import { Gallery } from '../components/Gallery'
+import { Feed } from '../components/Feed'
 import { Status } from '../components/Status'
 import { Viewer } from '../components/Viewer'
 import { useImages } from '../hooks/useImages'
@@ -23,7 +23,7 @@ export function PublicPage() {
         ) : images.length === 0 ? (
           <Status>No work posted yet.</Status>
         ) : (
-          <Gallery images={images} onOpen={setOpenIndex} />
+          <Feed images={images} onOpen={setOpenIndex} />
         )}
       </main>
       <Viewer images={images} index={openIndex} onClose={() => setOpenIndex(null)} />

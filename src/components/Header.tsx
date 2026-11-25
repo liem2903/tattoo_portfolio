@@ -1,6 +1,7 @@
 import { artist, contacts } from '../config'
 import styles from './Header.module.css'
 
+/** Name, subtitle and contacts at the top of the page. Centred on desktop to line up with the images. */
 export function Header() {
   return (
     <header className={styles.header}>
