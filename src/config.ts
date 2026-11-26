@@ -11,26 +11,26 @@ export type Contact = {
 }
 
 export const artist = {
-  name: 'Artist Name',
+  name: 'Josh Sagar',
   /** Optional second line under the name. Set to '' to hide it. */
-  subtitle: 'Studio Name · City',
+  subtitle: 'Sydney',
 }
 
 // Add, remove, or reorder contacts here. One entry = one line on the page.
 export const contacts: Contact[] = [
   {
     label: 'Instagram',
-    display: '@yourhandle',
-    href: 'https://instagram.com/yourhandle',
+    display: '@_goshjosh',
+    href: 'https://instagram.com/_goshjosh',
   },
   {
     label: 'Phone',
-    display: '0400 000 000',
-    href: 'tel:+61400000000',
+    display: '0432 887 938',
+    href: 'tel:+61432887938',
   },
   {
     label: 'Email',
-    display: 'hello@example.com',
-    href: 'mailto:hello@example.com',
+    display: 'jwillsagar@gmail.com',
+    href: 'mailto:jwillsagar@gmail.com',
   },
 ]
