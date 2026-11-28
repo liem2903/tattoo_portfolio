@@ -28,7 +28,7 @@ export function Feed({ images, onOpen }: Props) {
             type="button"
             className={styles.art}
             onClick={() => onOpen(i)}
-            aria-label={`Enlarge piece ${images.length - i}`}
+            aria-label={`Enlarge piece from ${monthYear.format(new Date(img.createdAt))}`}
           >
             <FadeImage
               src={img.thumbUrl}
@@ -44,8 +44,6 @@ export function Feed({ images, onOpen }: Props) {
           </button>
 
           <p className={styles.placard}>
-            {/* Numbered oldest = 1, so a piece keeps its number as new work is added */}
-            <span className={styles.no}>No. {String(images.length - i).padStart(2, '0')}</span>
             <span className={styles.date}>{monthYear.format(new Date(img.createdAt))}</span>
           </p>
         </li>

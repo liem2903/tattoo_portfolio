@@ -9,7 +9,7 @@ A simple portfolio site for a tattoo artist: a header with his name and clickabl
 - Libraries: `react-router-dom`, `react-masonry-css` (admin grid), `yet-another-react-lightbox` + Zoom (viewer), `qrcode`.
 
 ## Product decisions (settled with the user)
-- `/` public page ("Label" layout, chosen after comparing sticky/frame/grid): intro header (name, subtitle, contacts) that scrolls away; left-aligned on phones, centred on desktop to share an axis with the images. Then a scroll-snap feed (`Feed.tsx`): one piece per screen, each with a gallery placard underneath ("No. 07" numbered oldest = 1, plus month/year). Tap to open the viewer.
+- `/` public page ("Label" layout, chosen after comparing sticky/frame/grid): intro header (name, subtitle, contacts) that scrolls away; left-aligned on phones, centred on desktop to share an axis with the images. Then a scroll-snap feed (`Feed.tsx`): one piece per screen, each with a gallery placard underneath showing month/year (no piece numbers). Tap to open the viewer.
 - `/admin` uses the masonry grid (`Gallery.tsx`) because managing many images is easier in a grid.
 - `/admin` login-gated, not linked from the public site, lazy-loaded.
 - One admin account, created by hand. Public sign-ups disabled. Admin = row in `public.admins`; `public.is_admin()` gates every write.

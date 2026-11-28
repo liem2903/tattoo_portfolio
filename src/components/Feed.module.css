@@ -4,33 +4,33 @@
   scroll-snap-type: y mandatory;
 }
 
+/* Pieces flow at their natural height with one even gap between them.
+   Each is sized to fit on screen with its placard, and snaps to centre. */
 .feed {
   list-style: none;
   margin: 0;
-  padding: 0;
+  --rhythm: clamp(56px, 12vw, 128px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--rhythm);
+  padding: 0 var(--gutter) var(--rhythm);
 }
 
-/* Each slide is one screen tall and is the size container, so the image and
-   its placard are sized together and centred as one group. */
 .slide {
-  --placard-h: 72px;
-  /* svh = viewport height with browser bars showing, so the piece always fits */
-  height: 100svh;
-  container-type: size;
+  --placard-h: 48px;
+  container-type: inline-size;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: clamp(14px, 3vh, 48px) var(--gutter) clamp(20px, 4vh, 40px);
-  scroll-snap-align: start;
+  scroll-snap-align: center;
   /* One flick = one piece, never skip several */
   scroll-snap-stop: always;
 }
 
-/* Exactly the image's shape, as large as fits above the placard */
+/* Exactly the image's shape, as large as fits on screen above the placard */
 .art,
 .placard {
-  width: min(100cqw, (100cqh - var(--placard-h)) * var(--ar));
+  width: min(100cqw, (92svh - var(--placard-h)) * var(--ar));
 }
 
 .art {
@@ -68,17 +68,6 @@
   font-size: 0.8125rem;
 }
 
-.no {
-  font-family: var(--font-display);
-  font-size: 1.125rem;
-}
-
 .date {
   color: var(--muted);
-}
-
-@media (min-width: 900px) {
-  .slide {
-    padding: clamp(32px, 6vh, 72px) clamp(32px, 5vw, 96px) clamp(24px, 4vh, 48px);
-  }
 }
