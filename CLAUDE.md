@@ -16,7 +16,7 @@ A simple portfolio site for a tattoo artist: a header with his name and clickabl
 - Security is enforced by Supabase RLS/storage policies, never by hiding UI.
 - Admin can upload (multiple) and delete (with confirm). Newest first. No captions/reordering yet.
 - Uploads are resized in the browser: ~2400px full + ~800px thumbnail, JPEG. Grid shows thumbs; viewer shows full. (Supabase image transforms are paid, so thumbnails are made client-side.)
-- Contacts (Instagram, phone, email) live in `src/config.ts` as a list; the user edits that file to change them.
+- Contacts (Instagram, phone, email) are edited on `/admin` and stored in the one-row `site_contacts` table (public read, admin write). `defaultContacts` in `src/config.ts` is only a fallback if they can't be loaded. Empty field = hidden. Links are built in `src/lib/contactLinks.ts`.
 - Admin has a QR code (PNG + SVG download) built from `window.location.origin`.
 - Link preview: static `public/preview.png` + meta tags in `index.html`.
 

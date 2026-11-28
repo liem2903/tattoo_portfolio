@@ -1,8 +1,9 @@
-import { artist, contacts } from '../config'
+import { artist } from '../config'
+import type { ContactLink } from '../types'
 import styles from './Header.module.css'
 
-/** Name, subtitle and contacts at the top of the page. Centred on desktop to line up with the images. */
-export function Header() {
+/** Name, subtitle and contacts at the top of the page. */
+export function Header({ contacts }: { contacts: ContactLink[] }) {
   return (
     <header className={styles.header}>
       <h1 className={styles.name}>{artist.name}</h1>

@@ -7,6 +7,8 @@ import { useAdminActions } from '../hooks/useAdminActions'
 import { useImages } from '../hooks/useImages'
 import { LoginForm } from '../components/LoginForm'
 import { QrCodePanel } from '../components/QrCodePanel'
+import { ContactsForm } from '../components/ContactsForm'
+import { useContacts } from '../hooks/useContacts'
 import { Status } from '../components/Status'
 import { useSession } from '../hooks/useSession'
 import { supabase } from '../lib/supabase'
@@ -43,6 +45,7 @@ function AdminGate() {
 function Dashboard() {
   const { status, images, error, refresh } = useImages()
   const { upload, remove, uploading, deletingId, notice } = useAdminActions(refresh)
+  const contacts = useContacts()
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
@@ -90,6 +93,8 @@ function Dashboard() {
           />
         )}
       </main>
+
+      {contacts.status === 'ready' && <ContactsForm contacts={contacts.contacts} onSave={contacts.save} />}
 
       <QrCodePanel />
 

@@ -218,3 +218,15 @@
   font-size: 0.8125rem;
   color: var(--muted);
 }
+
+/* ---- Contacts ---- */
+.contactsForm {
+  max-width: 24rem;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.contactsForm .hint {
+  margin: 0;
+}

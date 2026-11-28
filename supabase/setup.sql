@@ -85,7 +85,43 @@ create policy "Admin can delete portfolio files"
   using (bucket_id = 'portfolio' and public.is_admin());
 
 -- ---------------------------------------------------------------------------
--- 4. Make your friend the admin  (do this AFTER creating his user)
+-- 4. Contact details shown at the top of the site (edited on /admin)
+-- ---------------------------------------------------------------------------
+-- Exactly one row (id is always true). Empty string = hidden on the site.
+create table if not exists public.site_contacts (
+  id          boolean primary key default true check (id),
+  instagram   text not null default '' check (char_length(instagram) <= 100),
+  phone       text not null default '' check (char_length(phone) <= 40),
+  email       text not null default '' check (char_length(email) <= 254),
+  updated_at  timestamptz not null default now()
+);
+alter table public.site_contacts enable row level security;
+
+insert into public.site_contacts (id, instagram, phone, email)
+values (true, '_goshjosh', '0432 887 938', 'jwillsagar@gmail.com')
+on conflict (id) do nothing;
+
+drop policy if exists "Anyone can view contacts" on public.site_contacts;
+create policy "Anyone can view contacts"
+  on public.site_contacts for select
+  to anon, authenticated
+  using (true);
+
+drop policy if exists "Admin can add contacts" on public.site_contacts;
+create policy "Admin can add contacts"
+  on public.site_contacts for insert
+  to authenticated
+  with check (public.is_admin());
+
+drop policy if exists "Admin can update contacts" on public.site_contacts;
+create policy "Admin can update contacts"
+  on public.site_contacts for update
+  to authenticated
+  using (public.is_admin())
+  with check (public.is_admin());
+
+-- ---------------------------------------------------------------------------
+-- 5. Make your friend the admin  (do this AFTER creating his user)
 -- ---------------------------------------------------------------------------
 -- Authentication -> Users -> Add user -> enter his email + a strong password.
 -- Then replace the email below and run just this statement:

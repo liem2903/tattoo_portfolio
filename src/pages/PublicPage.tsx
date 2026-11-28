@@ -3,16 +3,21 @@ import { Header } from '../components/Header'
 import { Feed } from '../components/Feed'
 import { Status } from '../components/Status'
 import { Viewer } from '../components/Viewer'
+import { useContacts } from '../hooks/useContacts'
 import { useImages } from '../hooks/useImages'
+import { artist } from '../config'
+import { toContactLinks } from '../lib/contactLinks'
 import { supabase } from '../lib/supabase'
 
 export function PublicPage() {
   const { status, images, error } = useImages()
+  const contacts = useContacts()
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
     <>
-      <Header />
+      {/* Wait for the saved contacts so old ones never flash up */}
+      <Header contacts={contacts.status === 'ready' ? toContactLinks(contacts.contacts, artist.phoneCountryCode) : []} />
       <main>
         {!supabase ? (
           <Status role="alert">Gallery not connected yet. Add the Supabase variables.</Status>
